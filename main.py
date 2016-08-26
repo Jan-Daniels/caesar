@@ -54,11 +54,11 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         original_text = self.request.get("text_to_encrypt")
-        text_to_encrypt = cgi.escape("text_to_encrypt", quote=True)
+        text_to_send = cgi.escape(original_text, quote=True)
         rotate_number = self.request.get("rotate_number")
 
         #Call function to rotate text
-        rotated_text = encrypt( original_text, int(rotate_number) )
+        rotated_text = encrypt( text_to_send, int(rotate_number) )
 
         #Write back out the rotated text
         self.write_form( rotated_text, rotate_number )
