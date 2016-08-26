@@ -1,10 +1,11 @@
 # Get text from user and the number to rotate the text by for encryption
-#
+# https://github.com/Jan-Daniels/caesar.git
+
 import webapp2
 import cgi
 from caesar import encrypt
 
-#Provide html for retrieving string and rotatation number from user
+# Provide html for retrieving string and rotatation number from user
 form="""
 
 <!DOCTYPE html>
@@ -44,22 +45,22 @@ form="""
 
 class MainHandler(webapp2.RequestHandler):
 
-	def write_form(self, text_to_encrypt="", rotate_number=""):
-		self.response.out.write(form % { "text_to_encrypt": text_to_encrypt,
+    def write_form(self, text_to_encrypt="", rotate_number=""):
+        self.response.out.write(form % { "text_to_encrypt": text_to_encrypt,
 										 "rotate_number": rotate_number } )
 	
-	def get(self):
-		self.write_form()
+    def get(self):
+        self.write_form()
 
-	def post(self):
-        unescaped_text = self.request.get("text_to_encrypt")
-		text_to_encrypt = cgi.escape(self.request.get("text_to_encrypt"), quote=True)
-		rotate_number = self.request.get("rotate_number")
+    def post(self):
+        original_text = self.request.get("text_to_encrypt")
+        text_to_encrypt = cgi.escape("text_to_encrypt", quote=True)
+        rotate_number = self.request.get("rotate_number")
 
-		#Call function to rotate text
-		rotated_text = encrypt( unescaped_text, int(rotate_number) )
+        #Call function to rotate text
+        rotated_text = encrypt( original_text, int(rotate_number) )
 
-		#Write back out the rotated text
-		self.write_form(rotated_text, rotate_number)
+        #Write back out the rotated text
+        self.write_form( rotated_text, rotate_number )
 
 app = webapp2.WSGIApplication([('/', MainHandler)], debug=True)
