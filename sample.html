@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        form {
+                background-color: #eee;
+                padding: 20px;
+                margin: 0 auto;
+                width: 540px;
+                font: 16px sans-serif;
+                border-radius: 10px;
+            }
+        textarea {
+                margin: 10px 0;
+                width: 540px;
+                height: 120px;
+            }
+        p.error {
+                color: red;
+            }
+    </style>
+</head>
+<body>
+    <form>
+        <h1>Enter your text to Encrypt:</h1>
+        <textarea type="text" name="user_input">%(user_input)s</textarea>
+        <br>
+        <div>
+            <label>Rotate by:</label>
+            <input type="text" name="rotate_number" value="0">
+            <p class="error"></p>
+        </div>        
+        <input type="submit">
+    </form>
+</body>
+</html>
+
+# <form method="post">
+#   <h1>Enter your text to encrypt:</h1>
+#       <textarea name="user_input">%(user_input)s</textarea>
+#   <h1>Enter the rotate number:</h1>
+#       <input type="text" name="rotate_number" value="%(rotate_number)s"/>
+#   <input type="submit"/>
+# </form>
